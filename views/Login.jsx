@@ -1,7 +1,10 @@
 import { View } from "react-native";
 import { Container ,Text, Button, Input, FormControl, Item, Toast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+
+    const navigation = useNavigation()
 
     return ( 
         <Center w="100%" flex="1" backgroundColor="#e84347">
@@ -56,16 +59,21 @@ const Login = () => {
             Iniciar Sesión
           </Button>
 
+          <Button mt="2" colorScheme="indigo"
+          onPress={()=>navigation.navigate("Register")} 
+          >
+            Crear Cuenta
+          </Button>
 
 
 
-          <HStack mt="6" justifyContent="center">
+{/*           <HStack mt="6" justifyContent="center">
             <Text fontSize="sm" color="coolGray.600" _dark={{
             color: "warmGray.200"
           }}>
               Soy nuevo.{" "}
             </Text>
-            <Link _text={{
+            <Link onPress={()=>navigation.navigate("Register")} _text={{
             color: "indigo.500",
             fontWeight: "medium",
             fontSize: "sm"
@@ -73,7 +81,7 @@ const Login = () => {
               Crear cuenta
             </Link>
           </HStack>
-
+ */}
 
 
 
