@@ -2,24 +2,25 @@ import { View } from "react-native";
 import { Container ,Text, Button, Input, FormControl, Item, Toast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
 
 const Login = () => {
+
     return ( 
-        <Center w="100%">
+        <Center w="100%" flex="1" backgroundColor="#e84347">
 
 
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
+      <Box  safeArea p="2" py="8" w="90%" maxW="290" bg="#e84347">
 
       {/* TITULO */}
-        <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
+        <Heading marginBottom="5" size="lg" fontWeight="600" color="white" _dark={{
         color: "warmGray.50"
       }}>
-          Welcome
+          UpTask
         </Heading>
 
       {/* SUBTITULO */}
 
         <Heading mt="1" _dark={{
         color: "warmGray.200"
-      }} color="coolGray.600" fontWeight="medium" size="xs">
+      }} color="white" fontWeight="medium" size="xs">
           Sign in to continue!
         </Heading>
 
@@ -28,8 +29,8 @@ const Login = () => {
 
 
           <FormControl>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input placeholder="juan@gmail.com"/>
+            <FormControl.Label  >Email</FormControl.Label>
+            <Input  bg="white" placeholder="juan@gmail.com"  />
           </FormControl>
 
 
@@ -37,13 +38,14 @@ const Login = () => {
             <FormControl.Label>Password</FormControl.Label>
             <Input type="password" />
 
-            <Link _text={{
+            {/* <Link _text={{
             fontSize: "xs",
             fontWeight: "500",
             color: "indigo.500"
           }} alignSelf="flex-end" mt="1">
               Forget Password?
-            </Link>
+            </Link> */}
+
           </FormControl>
 
 
@@ -51,7 +53,7 @@ const Login = () => {
 
 
           <Button mt="2" colorScheme="indigo">
-            Sign in
+            Iniciar Sesión
           </Button>
 
 
@@ -61,14 +63,14 @@ const Login = () => {
             <Text fontSize="sm" color="coolGray.600" _dark={{
             color: "warmGray.200"
           }}>
-              I'm a new user.{" "}
+              Soy nuevo.{" "}
             </Text>
             <Link _text={{
             color: "indigo.500",
             fontWeight: "medium",
             fontSize: "sm"
           }} href="#">
-              Sign Up
+              Crear cuenta
             </Link>
           </HStack>
 
