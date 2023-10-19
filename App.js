@@ -1,47 +1,64 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import {NavigationContainer} from "@react-navigation/native";
-import { createStackNavigator} from "@react-navigation/stack";
-import Login from './view/Login';
-import Registro from './view/Registro';
+import React from "react";
+import {
+  Text,
+  Link,
+  HStack,
+  Center,
+  Heading,
+  Switch,
+  useColorMode,
+  NativeBaseProvider,
+  extendTheme,
+  VStack,
+  Box,
+} from "native-base";
+import NativeBaseIcon from "./components/NativeBaseIcon";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Platform } from "react-native";
+import Login from "./views/Login";
 
+// Define the config
+const config = {
+  useSystemColorMode: false,
+  initialColorMode: "dark",
+};
+
+// extend the theme
+//export const theme = extendTheme({ config });
 const Stack = createStackNavigator();
 
-
-const App = ()=> {
-
+export default function App() {
   return (
-    <>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen 
-        name="Login"
-        component={Login}
-        options={{
-          title:"Iniciar Sesión",
-          headerShown: false /* se quita la barra superior */
-        }}
-        />
+    <NativeBaseProvider>
 
-          <Stack.Screen 
-        name="Registro"
-        component={Registro}
-        options={{
-          title:"Registro",
-          headerShown: false /* se quita la barra superior */
-        }}
-        />
-        
-      </Stack.Navigator>
-    </NavigationContainer>
-    </>
-    
+
+<NavigationContainer>
+  <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Login" component={Login} />
+  </Stack.Navigator>
+</NavigationContainer>
+
+
+      
+    </NativeBaseProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  
-});
-
-
-export default App
+// Color Switch Component
+/* function ToggleDarkMode() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <HStack space={2} alignItems="center">
+      <Text>Dark</Text>
+      <Switch
+        isChecked={colorMode === "light"}
+        onToggle={toggleColorMode}
+        aria-label={
+          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
+        }
+      />
+      <Text>Light</Text>
+    </HStack>
+  );
+} */
