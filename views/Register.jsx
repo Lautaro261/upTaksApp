@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Container ,Text, Button, Input, FormControl, Item, useToast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
-
+import { gql, useMutation } from "@apollo/client";
 const Register = () => {
-
+    const NUEVA_CUENTA = gql`
+    mutation crearUsuario($input: UsuarioInput) {
+        crearUsuario(input: $input)
+}
+    `
     const [nombre, setNombre] = useState("");
     const [email, setEmail]= useState("");
     const [password, setPassword] = useState("");
     const [mensaje, setMensaje] = useState(null);
     const toast = useToast();
+    const [crearUsuario]= useMutation(NUEVA_CUENTA);
 
-    const handleSubmit = ()=>{
+    const handleSubmit = async()=>{
          if(nombre === ""|| email === "" || password ===""){
             console.log('estoy vacio', nombre, email, password)
             setMensaje("Todos los campos son obligatorios");
@@ -20,7 +25,26 @@ const Register = () => {
         if(password.length<6){
             setMensaje("El password debe tener al menos 6 caracteres");
             mostrarAlerta(mensaje);
+            return
         }
+
+        console.log(nombre, email, password)
+
+        try {
+            const {data} = await crearUsuario({
+                variables:{
+                    input: 
+                    nombre,
+                    email,
+                    password
+                }
+            })
+
+            console.log(data.message)
+        } catch (error) {
+            console.log(error.message)
+        }
+
     }
 
     const mostrarAlerta = (mensaje)=>{
@@ -60,7 +84,7 @@ const Register = () => {
 
           <FormControl>
               <FormControl.Label >Nombre</FormControl.Label>
-              <Input  bg="white" placeholder="juan" onChangeText={text=>setNombre(text)} />
+              <Input  bg="white" placeholder="juan" onChangeText={text=>{setNombre(text)}} />
             </FormControl>
   
   
