@@ -8,8 +8,15 @@ import Prueba from "./views/Prueba";
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev"; 
+
+if (__DEV__) {  
+  loadDevMessages();
+  loadErrorMessages();
+}
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
+  uri: 'http://192.168.100.10:4000/',
   cache: new InMemoryCache(),
   credentials: 'include'
 });
@@ -24,7 +31,7 @@ export default function App() {
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={Prueba} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
 
         </Stack.Navigator>

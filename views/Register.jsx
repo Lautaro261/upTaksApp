@@ -1,21 +1,31 @@
 import { useState } from "react";
 import { Container ,Text, Button, Input, FormControl, Item, useToast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
 import { gql, useMutation, useQuery } from "@apollo/client";
-const Register = () => {
 
 
-    const NUEVA_CUENTA = gql`
+    const SALUDO_PRUEBA = gql`
     query saludo {
       saludo
       }
     `
+    const NUEVA_CUENTA = gql`
+    mutation crearUsuario($input: UsuarioInput) {
+      crearUsuario(input: $input)
+      }
+    `
+
+
+
+const Register = () => {
+
+
     const [nombre, setNombre] = useState("");
     const [email, setEmail]= useState("");
     const [password, setPassword] = useState("");
     const [mensaje, setMensaje] = useState(null);
     const toast = useToast();
-    //const [crearUsuario]= useMutation(NUEVA_CUENTA);
-    const { loading, error, data } = useQuery(NUEVA_CUENTA);
+    const [crearUsuario]= useMutation(NUEVA_CUENTA);
+    const { loading, error, data } = useQuery(SALUDO_PRUEBA);
     
     
 
@@ -35,23 +45,21 @@ const Register = () => {
 
         console.log(nombre, email, password)
 
+
         try {
-          const response = await 
-          console.log(response);
-
-
-            /* const {data} = await crearUsuario({
+            const { data } = await crearUsuario({
                 variables:{
-                    input: 
-                    nombre,
-                    email,
-                    password
+                    input: {
+                      password,
+                      nombre,
+                      email
+                    }
                 }
-            }) */
+            })
 
-           // console.log(data.message)
+            console.log(data)
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
 
     }
@@ -161,6 +169,8 @@ const Register = () => {
   
   
         </Box>
+
+        {data && <Text>Respuesta de la consulta: {data.saludo}</Text>}
       </Center>
      );
 }
