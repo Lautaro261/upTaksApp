@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container ,Text, Button, Input, FormControl, Item, useToast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { useNavigation } from "@react-navigation/native";
 
 
     const SALUDO_PRUEBA = gql`
@@ -26,6 +27,7 @@ const Register = () => {
     const toast = useToast();
     const [crearUsuario]= useMutation(NUEVA_CUENTA);
     const { loading, error, data } = useQuery(SALUDO_PRUEBA);
+    const navigation = useNavigation()
     
     
 
@@ -57,9 +59,14 @@ const Register = () => {
                 }
             })
 
-            console.log(data)
+            console.log(data.crearUsuario)
+            setMensaje(data.crearUsuario)
+            mostrarAlerta(data.crearUsuario); /* en lugar de mensaje */
+            navigation.navigate('Login')
         } catch (error) {
-            console.log(error)
+            console.log(error.message.replace('GraphQL error',''))
+            setMensaje(error.message.replace('GraphQL error',''))
+            mostrarAlerta(error.message.replace('GraphQL error','')) /* en lugar de mensaje */
         }
 
     }
