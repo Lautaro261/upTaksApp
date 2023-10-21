@@ -8,6 +8,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import Prueba from "./views/Prueba";
 import Proyectos from "./views/Proyectos";
+import NuevoProyecto from "./views/NuevoProyecto";
 import { setContext } from "apollo-link-context";
 
 
@@ -52,6 +53,7 @@ export default function App() {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Proyectos" component={Proyectos} />
+          <Stack.Screen name="NuevoProyecto" component={NuevoProyecto} />
 
         </Stack.Navigator>
       </NavigationContainer>
