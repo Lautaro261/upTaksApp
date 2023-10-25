@@ -3,6 +3,7 @@ import { View, Text, Button } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 import { useState } from "react";
 
+
 const Prueba = () => {
   const GET_HELLO = gql`
     query GetHello {

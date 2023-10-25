@@ -1,6 +1,7 @@
-import { Container ,Text, Button, Input, FormControl, Item, useToast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
+import { Container ,Text, Button, ScrollView, Input, FormControl, Item, useToast, VStack, Link, HStack, Center, Box, Heading } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery, gql } from "@apollo/client";
+import Lista from "./Prueba2";
 
 const GET_PROYECTOS = gql`
 query obtenerProyectos {
@@ -29,6 +30,15 @@ const Proyectos = () => {
             </Button>
 
             <Text>Selecciona un Proyecto</Text>
+
+            <Box  flex="1" safeAreaTop maxW="400px" w="100%">
+          <Heading p="4" pb="3" size="lg">
+            Inbox
+          </Heading>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Lista />
+          </ScrollView>
+        </Box>
 
 
 
